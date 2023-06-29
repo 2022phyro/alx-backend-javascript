@@ -1,18 +1,19 @@
 export default class Building {
-    constructor(sqft) {
-        this.sqft = sqft;
+  constructor(sqft) {
+    this.sqft = sqft;
+    if ((this.constructor !== Building) && (typeof this.evacuationWarningMessage !== 'function')) {
+      throw new Error('Class extending Building must override evacuationWarningMessage');
     }
+  }
 
-    get sqft() {
-        return this._sqft;
+  get sqft() {
+    return this._sqft;
+  }
+
+  set sqft(val) {
+    if (typeof val !== 'number') {
+      throw new TypeError('Sqft must be a number');
     }
-    set sqft(val) {
-        if (typeof val !== 'number') {
-            throw new TypeError('Sqft must be a number');
-        }
-        this._sqft = val;
-    }
-    evacuationWarningMessage() {
-        throw new Error('Class extending Building must override evacuationWarningMessage');
-    }
+    this._sqft = val;
+  }
 }
