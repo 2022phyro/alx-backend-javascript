@@ -29,6 +29,10 @@ export default class Car {
     this._motor = val;
   }
 
+  static get [Symbol.species]() {
+    return this;
+  }
+
   cloneCar() {
     const { constructor } = Reflect.getPrototypeOf(this);
     return Reflect.construct(constructor, []);
