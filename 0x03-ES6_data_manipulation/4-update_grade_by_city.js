@@ -3,7 +3,9 @@ export default function updateStudentGradeByCity(list, city, newGrades) {
     if (item.location === city) {
       return true;
     }
-  }).map((student) => {
+    return false;
+  }).map((stud) => {
+    const student = { ...stud };
     student.grade = 'N/A';
     newGrades.forEach((part) => {
       if (part.studentId === student.id) {
