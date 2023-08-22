@@ -1,4 +1,4 @@
-const fs = require('fs/promises');
+const fs = require('fs').promises;
 
 function countStudents(fil) {
   return new Promise((resolve, reject) => {
@@ -6,7 +6,6 @@ function countStudents(fil) {
       .then((data) => {
         const fields = data.split('\n').filter(Boolean);
         fields.shift();
-        // console.log(fields)
         const students = {};
         fields.forEach((line) => {
           const curr = line.split(',').filter(Boolean);
