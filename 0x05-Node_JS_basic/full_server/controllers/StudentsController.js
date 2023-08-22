@@ -33,13 +33,16 @@ class StudentsController {
   }
 
   static getAllStudentsByMajor(request, response) {
-    if (request !== 'CS' || request !== 'SWE') {
-      response.status(500).send('major parameter must be CS or SWE');
+    const { major } = request.params;
+    const MAJORS = ['CS', 'SWE'];
+    console.log(major);
+    if (!MAJORS.includes(major)) {
+      response.status(500).send('Major parameter must be CS or SWE');
       return;
     }
     readDB(FILE)
       .then((report) => {
-        const re = `List: ${report[request].join(', ')}`;
+        const re = `List: ${report[major].join(', ')}`;
         response.status(200).send(re);
       })
       .catch((err) => {
