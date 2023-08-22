@@ -5,7 +5,6 @@ function countStudents(fil) {
     const data = fs.readFileSync(fil, 'utf-8');
     const fields = data.split('\n').filter(Boolean);
     fields.shift();
-    // console.log(fields)
     const students = {};
     fields.forEach((line) => {
       const curr = line.split(',').filter(Boolean);
@@ -21,7 +20,7 @@ function countStudents(fil) {
       console.log(`Number of students in ${key}: ${students[key].length}. List: ${students[key].join(', ')}`);
     });
   } catch (err) {
-    console.error('Cannot load the database');
+    throw new Error('Cannot load the database');
   }
 }
 module.exports = countStudents;
