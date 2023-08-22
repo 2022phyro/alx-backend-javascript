@@ -4,13 +4,10 @@ const hostname = '127.0.0.1';
 const port = 1245;
 const app = http.createServer();
 const FILE = process.argv[2];
-const fs = require('fs/promises');
+const fs = require('fs').promises;
 
 function countStudents(fil) {
   return new Promise((resolve, reject) => {
-    // if (!fill) {
-    //     reject(new Error("Cannot load from database"))
-    // }
     fs.readFile(fil, 'utf-8')
       .then((data) => {
         const result = [];
@@ -22,6 +19,8 @@ function countStudents(fil) {
           const fi = curr[3];
           if (Object.keys(students).includes(fi)) {
             students[fi].push(curr[0]);
+          } else {
+            students[fi] = [curr[0]];
           }
         });
         result.push(`Number of students: ${fields.length}`);
