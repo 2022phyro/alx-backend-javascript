@@ -22,7 +22,7 @@ class StudentsController {
         });
         result += `Number of students: ${count}\n`;
         Object.keys(report).forEach((ky) => {
-          result += `Number of students in ${ky}: ${report[ky].length}. List: ${report[ky].join(', ')}\n`;
+          result += `Number of students in ${ky}: ${report[ky].length}. List: ${report[ky].sort(ccmp).join(', ')}\n`;
         });
         response.status(200).send(result);
       })
